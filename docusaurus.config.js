@@ -9,8 +9,10 @@ const config = {
   title: "JavaScript",
   tagline: "Dinosaurs are cool",
   favicon: "img/logo.svg",
-  url: "https://minhchi1509-javascript.netlify.app/",
-  baseUrl: "/",
+  url: "https://github.com", // Your website URL
+  baseUrl: "/javascript/",
+  projectName: "javascript",
+  organizationName: "nmc-docs",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   i18n: {
