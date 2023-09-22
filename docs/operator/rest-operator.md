@@ -8,7 +8,7 @@ sidebar_position: 8
 - Toán tử `rest` thay vì rải các phần tử của `array` hay `object` thì nó lại tập hợp/thu thập/cô đặc các tham số còn lại thành một giá trị duy nhất (có thể là `array`, hoặc một `object`).
 - Toán tử `rest` trả về một `array`, hoặc một `object`.
 - Toán tử `rest` thường đi kèm với: **parameter** của một **function** ( **rest parameter** )
-- Một **variable** (dùng trong cú pháp [destructuring](./arithmetic-operators))
+- Một **variable** (dùng trong cú pháp [destructuring](../destructuring-assignment/introduce))
 
 ## Rest parameter
 
