@@ -12,6 +12,9 @@ sidebar_position: 2
 | `Object.entries(object)`         | Trả về một mảng các phần tử. Các phần tử của mảng này lại là một mảng gồm 2 phần tử chính là cặp `key-value` của object. Kiểu dữ liệu của `key` luôn là `string`, còn `value` phụ thuộc vào object.                                                                                                                                     |
 | `Object.fromEntries(iterable)`   | Trả về một Object sau khi được biến đổi từ `iterable`. `Iterable` có thể là một `array`, `map` và nó phải chứa các cặp `key-value` tương ứng. Lưu ý: kiểu dữ liệu của `key` luôn phải là `string`                                                                                                                                       |
 | `Object.keys(object)`            | Trả về một mảng có kiểu dữ liệu của phần tử là `string` chứa toàn bộ `key` của object                                                                                                                                                                                                                                                   |
+| `Object.values(object)`          | Trả về một mảng có kiểu dữ liệu của phần tử là `string` chứa toàn bộ `value` của object                                                                                                                                                                                                                                                 |
+| `Object.freeze(object)`          | Trả về một object mới clone lại object cũ nhưng sẽ không thể thay đổi được giá trị của thuộc tính                                                                                                                                                                                                                                       |
+| `Object.seal(object)`            | Trả về một object mới clone lại object cũ nhưng sẽ không thêm được bất kỳ thuộc tính nào                                                                                                                                                                                                                                                |
 
 - Ví dụ về `Object.assign()`:
 
@@ -56,7 +59,7 @@ const arr = [
 console.log(Object.fromEntries(arr)); // {name: 'Chi', age: 20, address: 'Hanoi'}
 ```
 
-- Ví dụ về `Object.keys()`:
+- Ví dụ về `Object.keys()`, `Object.values()`:
 
 ```js
 const obj = {
@@ -64,5 +67,6 @@ const obj = {
   age: 20,
   address: "Hanoi",
 };
-console.log(Object.keys(obj)); // ['name', 'age', 'address']
+console.log(Object.keys(obj)); // ["name", "age", "address"]
+console.log(Object.values(obj)); // ["Chi", 20, "Hanoi"]
 ```
