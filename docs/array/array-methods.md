@@ -89,9 +89,9 @@ console.log(arr.slice(0, 3)); // [1, 2, 3]
 
 - Đây là phương thức dùng để thêm kết hợp xóa phần tử tại một vị trí ta chỉ định
 
-| Syntax                                       | Description                                                                                                                                         |
-| -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `arr.splice(index, howmany, item1,...itemX)` | **index**: Chỉ số thêm/xóa phần tử<br />**howmany**: Số lượng phần tử sẽ bị xóa<br />**item1,…itemX**: Các phần tử sẽ được thêm vào từ vị trí index |
+| Syntax                                       | Description                                                                                                                                                                                                         |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `arr.splice(index, howmany, item1,...itemX)` | **index**: Chỉ số thêm/xóa phần tử<br />**howmany**: Số lượng phần tử sẽ bị xóa<br />**item1,…itemX**: Các phần tử sẽ được thêm vào từ vị trí index<br />- Phương thức này trả về một mảng chứa các phần tử bị xóa. |
 
 ```js
 const fruits = ["Banana", "Orange", "Apple", "Mango"];
@@ -110,7 +110,9 @@ console.log(fruits); // ['Banana', 'Orange', 'Kiwi']
 ```js
 const fruits = ["Banana", "Orange", "Apple", "Mango"];
 //Từ phần tử có chỉ số 1 ("Orange"), xóa đi 2 phần tử ("Orange", "Apple"), đồng thời thêm 2 phần tử mới "Lemon" và "Kiwi"
-fruits.splice(1, 2, "Lemon", "Kiwi");
+const removedItems = fruits.splice(1, 2, "Lemon", "Kiwi");
+
+console.log(removedItems); // ["Orange", "Apple"]
 console.log(fruits); // ["Banana", "Lemon", "Kiwi", "Mango"]
 ```
 
