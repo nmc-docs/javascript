@@ -40,4 +40,6 @@ Các parameter là tùy chọn. Nếu không có parameter thì sẽ khởi tạ
 | `current.getMinutes()`      | Trả về giá trị của phút (`0` đến `59`)                                                                                                                           |
 | `current.getSeconds()`      | Trả về giá trị của giây (`0` đến `59`)                                                                                                                           |
 | `current.getMilliseconds()` | Trả về giá trị của mili giây (từ `0` đến `999`)                                                                                                                  |
+| `current.getTime()`         | Trả về giá trị của UNIX Time (ở dạng milisecond)                                                                                                                 |
 | `current.set…(number)`      | Có phương thức get thì sẽ có tất cả phương thức set tương ứng như `setFullYear`, `setMonth`, `setDate`,… Phương thức này nhận một parameter duy nhất là `number` |
+| `current.toISOString()`     | Trả về một string là giá trị của Date ở dạng ISO String (ví dụ: "2024-03-23T18:34:23.638Z")                                                                      |
