@@ -1,8 +1,30 @@
 ---
-sidebar_position: 4
+sidebar_position: 18
 ---
 
-# Ví dụ về Async/await
+# Async/await
+
+## Giới thiệu
+
+- Trong JavaScript, `async` và `await` là hai từ khóa được sử dụng để làm việc với các hàm bất đồng bộ (asynchronous functions). Cụ thể:
+
+#### async
+
+- Từ khóa `async` được sử dụng để khai báo một hàm bất đồng bộ.
+- Khi một hàm được khai báo với từ khóa `async`, nó sẽ luôn trả về một Promise.
+- Nếu trong hàm async có một câu lệnh `return`, giá trị được trả về từ hàm đó sẽ trở thành giá trị được giải quyết của Promise.
+- Hàm này có thể chứa từ khóa `await`, giúp JavaScript đợi cho đến khi một Promise được giải quyết (resolved).
+
+#### await
+
+- Từ khóa `await` chỉ có thể được sử dụng bên trong một hàm được khai báo với từ khóa `async`.
+- Khi sử dụng `await` trong một hàm `async`, JavaScript sẽ tạm dừng việc thực thi của hàm cho đến khi Promise được giải quyết. Nó giúp code bất đồng bộ trở nên dễ đọc hơn, vì nó cho phép viết mã theo kiểu tuần tự, thay vì sử dụng callback hoặc Promise chaining.
+- Sau `await` phải là một Promise hoặc một function return Promise.
+- Ta dùng try/catch để xử lý lỗi nếu Promise ở `await` reject error.
+
+![1711892979992](image/async-await/1711892979992.png)
+
+## Một số ví dụ về sử dụng async/await
 
 - Ví dụ cơ bản về `async/await:`
 

@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Promise chain
 
-- Promise chain là một chuỗi các Promise nối đuôi nhau thực hiện.
+- Promise chain là một kỹ thuật trong JavaScript để liên kết các xử lý bất đồng bộ tuần tự với nhau thông qua các phương thức `.then()` hoặc `.catch()`. Kỹ thuật này cho phép thực hiện các tác vụ bất đồng bộ theo trình tự một cách dễ đọc và linh hoạt.
 - Ví dụ: Promise Chain để in các số 1,2,3,4,5, mỗi lần in cách nhau 1s
 
 ```js

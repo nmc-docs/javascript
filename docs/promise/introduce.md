@@ -4,46 +4,41 @@ sidebar_position: 1
 
 # Giới thiệu
 
-## Producing code và Consuming code là gì?
-
-- **Producing code** là code mà nó mất một thời gian để chạy.
-- **Consuming code** là code mà nó chờ **Producing code** chạy xong mới thực hiện.
-
 ## Promise là gì?
 
-- **Promise** là một `object` mà nó chứa **Producing code** và gọi đến **Consuming code**
+- Trong JavaScript, Promise là một cơ chế để xử lý các tác vụ bất đồng bộ. Một Promise là một đối tượng biểu diễn một giá trị có thể đã hoặc chưa được tính toán tại một thời điểm trong tương lai. Promise có thể ở một trong ba trạng thái:
 
-## Cú pháp
+  - Pending: Trạng thái khởi tạo khi một Promise được tạo ra.
+  - Fulfilled: Trạng thái khi một Promise hoàn thành thành công.
+  - Rejected: Trạng thái khi một Promise gặp phải lỗi hoặc bị từ chối.
+
+- Một Promise có thể chứa một giá trị kết quả (hoặc một lỗi) khi nó được giải quyết.
+- Cú pháp cơ bản của một Promise trong JavaScript như sau:
 
 ```js
-const myPromise = new Promise((resolve, reject) => {
-  // "Producing Code" (May take some time)
+let myPromise = new Promise(function(resolve, reject) {
+  // Xử lý logic bất đồng bộ ở đây
 
-  resolve(data); // when successful
-  reject(error); // when failed
+  if (/*tác vụ thành công*/) {
+    resolve('Kết quả thành công'); // Thực hiện khi tác vụ hoàn thành thành công
+  } else {
+    reject('Lỗi xảy ra'); // Thực hiện khi tác vụ gặp lỗi
+  }
 });
 
-// "Consuming Code" (must wait for a fulfilled Promise)
+// Sử dụng Promise
 myPromise
-  .then((value) => {
-    /* Code if successful */
-  })
-  .catch((error) => {
-    /* Code if some error */
-  })
-  .finally(() => {
-    /* Code if done, always execute */
-  });
+.then(function(result) {
+  console.log(result); // Kết quả thành công được in ra
+})
+.catch(function(error) {
+  console.log(error); // Lỗi được in ra nếu có
+})
+.finally(() => {
+console.log("Promise finished!") // Luôn được thực thi sau cùng bất kể có lỗi hay thành công
+});
+
 ```
-
-:::note
-
-- **Producing code** là phần code mà nó phải mất một khoảng thời gian để chạy xong.
-- Sau đó nếu chạy thành công không có lỗi, hàm `resolve(data)` sẽ được gọi, `data` là parameter được truyền vào là giá trị trả về của **Producing code** vừa chạy để thực hiện phần `.then((value) =>{})` ở bên dưới.
-- Nếu có lỗi, hàm `reject(error)` sẽ được gọi, `error` là parameter được truyền vào là giá trị (nếu có) của **Producing code** vừa chạy để thực hiện phần `.catch((error) => {})` ở bên dưới
-- Phần `.finally(() => {})` thực hiện khi một trong hai phần `.then` hoặc `.catch` chạy xong
-
-:::
 
 - Ví dụ:
 
@@ -56,7 +51,7 @@ const myPromise = new Promise((resolve, reject) => {
 
 myPromise
   .then((value) => {
-    console.log(value); // Đoạn code này sẽ được chạy
+    console.log(value); // Đoạn code này sẽ được chạy, value có giá trị "Successfully"
   })
   .catch((error) => {
     console.log(error);

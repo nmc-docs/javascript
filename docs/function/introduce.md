@@ -9,9 +9,10 @@ sidebar_position: 1
 - Function trong JavaScript cũng có thể được định nghĩa như một biến, được gán cho một biến, hoặc truyền vào một function khác dưới dạng đối số.
 - Các function trong JavaScript có rất nhiều ứng dụng, từ việc xử lý sự kiện (event handling), tạo ra các hiệu ứng động trên trang web (animations), xử lý dữ liệu (data processing), tạo ra các đối tượng và thực hiện các tác vụ phức tạp khác
 
-* Có hai cách viết function:
+* Có 3 cách viết function:
   - [Declaration function](./declaration-function)
   - [Arrow function](./arrow-function)
+  - [IIFE](./iife)
 * Function có thể gán cho một biến nếu nó trả về giá trị:
 
 ```js
