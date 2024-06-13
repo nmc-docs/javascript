@@ -20,12 +20,12 @@ function test() {
 }
 ```
 
-- Từ khóa `let` có tính chất [block scope](./Block-scope)
+- Từ khóa `let` có tính chất [block scope](./block-scope)
 
 ## 2. `const`:
 
 - Không thể khai báo lại nhiều lần trong cùng một cấp khối `{}`
-- Từ khóa `const` có tính chất [block scope](./Block-scope)
+- Từ khóa `const` có tính chất [block scope](./block-scope)
 - Biến được khai báo bằng `const` phải được gán ngay giá trị khi khai báo
 
 :::note
