@@ -27,6 +27,6 @@ sidebar_position: 3
 | `Math.log(x)`      | Trả về giá trị của `ln(x)`                                                                |
 | `Math.log10(x)`    | Trả về giá trị log10(x)                                                                   |
 | `Math.log2(x)`     | Trả về giá trị log2(x)                                                                    |
-| `Math.min(x1,…xn)` | Trả về giá trị nhỏ nhất của {x1,…xn}                                                      |
-| `Math.max(x1,…xn)` | Trả về giá trị lớn nhất của {x1,…xn}                                                      |
+| `Math.min(x1,…xn)` | Trả về giá trị nhỏ nhất của \{x1,…xn\}                                                    |
+| `Math.max(x1,…xn)` | Trả về giá trị lớn nhất của \{x1,…xn\}                                                    |
 | `Math.random()`    | Trả về giá trị bất kì (số thực) từ [0,1)                                                  |
