@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkjavascript=self.webpackChunkjavascript||[]).push([[7576],{9456:i=>{i.exports=JSON.parse('{"title":"Promise","slug":"/category/promise","permalink":"/javascript/category/promise","navigation":{"previous":{"title":"JSON","permalink":"/javascript/json"},"next":{"title":"Gi\u1edbi thi\u1ec7u","permalink":"/javascript/promise/introduce"}}}')}}]);
