@@ -128,3 +128,155 @@ fs.writeFileSync("files/example-clone.jpg", imageFileBase64, "base64"); // Ghi l
 - Khi đọc file mà chỉ định **encoding** thì lúc ghi file bắt buộc phải chỉ định lại **encoding** đó.
 
 :::
+
+## Copy file
+
+:::info
+
+- Cú pháp:
+
+```js
+fs.copyFileSync(src: string, dest: string): void
+```
+
+:::
+
+- Ví dụ:
+
+```js
+import fs from "fs";
+
+fs.copyFileSync("files/example.jpg", "files/example-clone.jpg"); // Copy file ảnh
+```
+
+## Chèn nội dung vào file
+
+:::info
+
+- Cú pháp:
+
+```js
+fs.appendFileSync(path: string, data: string | Buffer, encoding?: BufferEncoding): void
+```
+
+- Phương thức `fs.appendFileSync()` trong Node.js được sử dụng để thêm dữ liệu vào cuối một file. Nếu file không tồn tại, phương thức này sẽ tạo file mới.
+
+:::
+
+- Ví dụ:
+
+```js
+import fs from "fs";
+
+fs.appendFileSync("files/example.txt", "Xin chào các bạn"); // Ghi thêm vào file text
+```
+
+## Tạo thư mục
+
+:::info
+
+- Cú pháp:
+
+```js
+fs.mkdirSync(path: string, { recursive?: boolean }): string | undefined;
+```
+
+- Phương thức `fs.mkdirSync()` trong Node.js được sử dụng để tạo một thư mục mới. **`recursive`** (boolean): Nếu được đặt là `true`, tất cả các thư mục con trong đường dẫn sẽ được tạo nếu chúng chưa tồn tại.
+
+:::
+
+- Ví dụ:
+
+```js
+import fs from "fs";
+
+fs.mkdirSync("assets/images", { recursive: true });
+```
+
+## Xóa file, thư mục
+
+:::info
+
+- Cú pháp:
+
+```js
+fs.rmSync(path: string, { recursive?: boolean, force?: boolean });
+```
+
+- Trong đó:
+  - **`recursive`** (boolean): Nếu được đặt là `true`, sẽ xóa cả thư mục và tất cả nội dung bên trong nó. Nếu bạn không chỉ định `recursive: true`, thư mục sẽ không bị xóa nếu nó không rỗng.
+  - **`force`** (boolean): Nếu được đặt là `true`, sẽ bỏ qua các lỗi không cho phép và cố gắng xóa đối tượng được chỉ định. Tùy chọn này bỏ qua mọi lỗi liên quan đến quyền truy cập hoặc tệp tin không tồn tại, giúp đảm bảo rằng thư mục hoặc tệp tin sẽ bị xóa mà không bị ngăn cản bởi các lỗi thông thường.
+
+:::
+
+- Ví dụ:
+
+```js
+import fs from "fs";
+
+fs.rmSync("assets/images", { recursive: true }); // Xóa thư mục "images" và tất cả các file/folder bên trong
+fs.rmSync("assets", { recursive: true }); // Xóa thư mục "assets" và tất cả các file/folder bên trong
+fs.rmSync("assets/images/example.jpg"); // Xóa file example.jpg
+```
+
+## Đổi tên file, thư mục
+
+:::info
+
+- Cú pháp:
+
+```js
+fs.renameSync(oldPath: string, newPath: string): void
+```
+
+:::
+
+- Ví dụ:
+
+```js
+import fs from "fs";
+
+fs.renameSync("assets/images", "assets/img"); // Đổi tên thư mục
+fs.renameSync("assets/example.pdf", "assets/my-cv.pdf"); // Đổi tên file
+```
+
+## Đọc file, folder bên trong thư mục
+
+:::info
+
+- Cú pháp:
+
+```js
+fs.readdirSync(path: stringify, {recursive?: boolean, withFileTypes?: boolean}): string[] | fs.Dirent[]
+```
+
+- Trong đó:
+  - **`recursive`** (boolean): Nếu được đặt là `true`, sẽ đệ quy qua các thư mục con.
+  - **`withFileTypes`** (boolean): Nếu được đặt là `true`, mỗi phần tử trong mảng trả về sẽ là một đối tượng `fs.Dirent` thay vì một chuỗi tên tệp tin/thư mục. Điều này cho phép ta phân biệt giữa các tệp tin và thư mục dễ dàng hơn.
+
+:::
+
+- Ví dụ 1: Đọc nội dung thư mục và trả về danh sách tên tệp tin:
+
+```js
+import fs from "fs";
+
+const files = fs.readdirSync("files");
+console.log(files); // [ "example.jpg", "example.mp3", "example.pdf", "example.txt" ]
+```
+
+- Ví dụ 2: Đọc nội dung thư mục với `withFileTypes`
+
+```js
+import fs from "fs";
+
+const dirents = fs.readdirSync("assets", { withFileTypes: true });
+
+dirents.forEach((dirent) => {
+  if (dirent.isDirectory()) {
+    console.log(`${dirent.name} là thư mục.`);
+  } else if (dirent.isFile()) {
+    console.log(`${dirent.name} là tệp tin.`);
+  }
+});
+```
