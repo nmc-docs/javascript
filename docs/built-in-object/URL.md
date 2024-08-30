@@ -14,13 +14,14 @@ const myURL = new URL(url: string | URL);
 
 ## Thuộc tính
 
-| Property       |
-| -------------- |
-| `url.protocol` |
-| `url.hostname` |
-| `url.pathname` |
-| `url.search`   |
-| `url.hash`     |
+| Property           | Return type                            |
+| ------------------ | -------------------------------------- |
+| `url.protocol`     | string                                 |
+| `url.hostname`     | string                                 |
+| `url.pathname`     | string                                 |
+| `url.search`       | string                                 |
+| `url.searchParams` | [URLSearchParams](./url-search-params) |
+| `url.hash`         | string                                 |
 
 ```js
 const url = new URL(
@@ -31,6 +32,7 @@ console.log(url.protocol); // In ra "https:"
 console.log(url.hostname); // In ra "www.facebook.com"
 console.log(url.pathname); // In ra "/page/profile/minhchi1509/"
 console.log(url.search); // In ra "?name=Chi&age=20"
+console.log(url.searchParams.get("name")); // In ra "Chi"
 console.log(url.hash); // In ra "#myprofile"
 ```
 
