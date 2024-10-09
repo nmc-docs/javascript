@@ -60,4 +60,3 @@ Modifiers nằm ở cuối biểu thức chính quy, ví dụ: `/[abc]/g`
 | Method               | Return                                               |
 | -------------------- | ---------------------------------------------------- |
 | `regex.test(string)` | Trả về `true` nếu chuỗi `string` so khớp với `regex` |
-|                      |                                                      |

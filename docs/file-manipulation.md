@@ -197,7 +197,7 @@ fs.mkdirSync("assets/images", { recursive: true });
 
 :::info
 
-- Cú pháp:
+- Cú pháp xóa file + thư mục:
 
 ```js
 fs.rmSync(path: string, { recursive?: boolean, force?: boolean });
@@ -206,6 +206,16 @@ fs.rmSync(path: string, { recursive?: boolean, force?: boolean });
 - Trong đó:
   - **`recursive`** (boolean): Nếu được đặt là `true`, sẽ xóa cả thư mục và tất cả nội dung bên trong nó. Nếu bạn không chỉ định `recursive: true`, thư mục sẽ không bị xóa nếu nó không rỗng.
   - **`force`** (boolean): Nếu được đặt là `true`, sẽ bỏ qua các lỗi không cho phép và cố gắng xóa đối tượng được chỉ định. Tùy chọn này bỏ qua mọi lỗi liên quan đến quyền truy cập hoặc tệp tin không tồn tại, giúp đảm bảo rằng thư mục hoặc tệp tin sẽ bị xóa mà không bị ngăn cản bởi các lỗi thông thường.
+
+:::
+
+:::info
+
+- Cú pháp xóa file:
+
+```js
+fs.unlinkSync(path: string)
+```
 
 :::
 
