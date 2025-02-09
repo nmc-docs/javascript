@@ -1,8 +1,14 @@
 ---
-sidebar_position: 6
+sidebar_position: 2
 ---
 
 # Buffer
+
+:::note
+
+- `Buffer` chỉ hoạt động ở môi trường Node.js
+
+:::
 
 ## Giới thiệu về Buffer
 
@@ -95,6 +101,8 @@ console.log(result);
 ```
 
 ## Buffer object method
+
+- Lớp `Buffer` chứa tất cả các thuộc tính, phương thức của mảng, ngoài ra, nó còn có:
 
 | Method                                | Description                                                  |
 | ------------------------------------- | ------------------------------------------------------------ |
