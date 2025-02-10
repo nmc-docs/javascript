@@ -1,12 +1,12 @@
 ---
-sidebar_position: 8
+sidebar_position: 5
 ---
 
-# Blob
+# Blob và File
 
 :::note
 
-- Blob hoạt động ở môi trường trình duyệt là chủ yếu.
+- Blob, File hoạt động ở môi trường trình duyệt là chủ yếu.
 
 :::
 
@@ -79,4 +79,20 @@ const main = async () => {
 };
 
 main();
+```
+
+## Lớp File
+
+:::info
+
+- `File` là một lớp trong JavaScript dùng để đại diện cho tệp tin (file) được chọn từ hệ thống của người dùng, thường qua thẻ `<input type="file">` hoặc API như `Drag and Drop`.
+- **`File` kế thừa (`extends`) từ `Blob`** , tức là **nó có tất cả các phương thức của `Blob`** và bổ sung thêm một số thuộc tính liên quan đến tệp tin.
+
+:::
+
+```js
+const file = new File(["Hello, world!"], "example.txt", { type: "text/plain" });
+
+console.log(file instanceof File); // true
+console.log(file instanceof Blob); // true
 ```

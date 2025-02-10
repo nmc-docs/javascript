@@ -1,8 +1,7 @@
 ---
 sidebar_position: 21
 ---
-
-# Thao tác với thư mục, file
+# fs
 
 ## Giới thiệu về `fs`
 
@@ -290,3 +289,114 @@ dirents.forEach((dirent) => {
   }
 });
 ```
+
+## Đọc ghi file sử dụng stream trong fs
+
+:::info
+
+- Trong Node.js, `fs.createWriteStream` và `fs.createReadStream` là hai phương thức của module `fs` (File System) dùng để ghi và đọc file bằng cách sử dụng  **stream** , giúp xử lý dữ liệu hiệu quả hơn so với cách đọc/ghi toàn bộ file vào bộ nhớ.
+
+:::
+
+#### `fs.createWriteStream`
+
+- Dùng để tạo một luồng ghi (`write stream`) vào file, giúp ghi dữ liệu theo từng phần mà không cần nạp toàn bộ nội dung vào bộ nhớ.
+
+🔹 Ví dụ: Ghi dữ liệu vào file bằng `createWriteStream`:
+
+```js
+import fs from 'fs';
+const writeStream = fs.createWriteStream('output.txt');
+
+// Ghi nhiều dòng vào file
+writeStream.write('Dòng 1\n');
+writeStream.write('Dòng 2\n');
+writeStream.write('Dòng 3\n');
+
+// Kết thúc stream
+writeStream.end(() => {
+    console.log('Ghi file thành công!');
+});
+```
+
+:::note
+
+📌 **Giải thích:**
+
+* `fs.createWriteStream('output.txt')`: Tạo luồng ghi vào file `output.txt`.
+* `writeStream.write()`: Ghi dữ liệu vào file theo từng phần.
+* `writeStream.end()`: Kết thúc luồng ghi.
+
+:::
+
+#### `fs.createReadStream`
+
+- Dùng để tạo một luồng đọc (`read stream`) từ file, giúp đọc file theo từng phần nhỏ mà không cần tải toàn bộ vào bộ nhớ.
+
+🔹 Ví dụ: Đọc file bằng `createReadStream`:
+
+```js
+import fs from 'fs';
+
+const readStream = fs.createReadStream('output.txt', 'utf8');
+
+// Sự kiện 'data' được gọi khi có dữ liệu mới
+readStream.on('data', (chunk) => {
+    console.log('Nhận dữ liệu:', chunk);
+});
+
+// Sự kiện 'end' được gọi khi đọc xong file
+readStream.on('end', () => {
+    console.log('Đọc file hoàn tất!');
+});
+```
+
+:::note
+
+📌 **Giải thích:**
+
+* `fs.createReadStream('output.txt', 'utf8')`: Tạo luồng đọc file `output.txt` với mã hóa UTF-8.
+* `readStream.on('data', callback)`: Nhận dữ liệu từng phần (chunk).
+* `readStream.on('end', callback)`: Gọi khi đọc xong file.
+
+:::
+
+#### Kết hợp `createReadStream` và `createWriteStream`
+
+- Dùng để sao chép file mà không cần nạp toàn bộ file vào bộ nhớ.
+
+🔹 Ví dụ: Sao chép file bằng stream:
+
+```js
+import fs from 'fs';
+
+const readStream = fs.createReadStream('input.txt');
+const writeStream = fs.createWriteStream('output.txt');
+
+readStream.pipe(writeStream);
+
+writeStream.on('finish', () => {
+    console.log('Sao chép file thành công!');
+});
+
+```
+
+:::note
+
+📌 **Giải thích:**
+
+* `readStream.pipe(writeStream)`: Truyền dữ liệu từ `readStream` sang `writeStream` giúp sao chép file hiệu quả.
+
+:::
+
+:::tip
+
+✅ Khi nào nên dùng `createWriteStream` và `createReadStream`?
+
+* Khi làm việc với **file lớn** (video, log, JSON, CSV, v.v.).
+* Khi cần **ghi dữ liệu liên tục** (ghi log, ghi dữ liệu từ request HTTP).
+* Khi cần  **xử lý file mà không chiếm nhiều RAM** .
+
+👉 Nếu chỉ cần đọc/ghi file nhỏ, có thể dùng `fs.readFile()` và `fs.writeFile()`.
+
+:::
