@@ -61,11 +61,11 @@ const main = async () => {
 main();
 ```
 
-| Phương thức     | Kiểu dữ liệu trả về                             | Mô tả                                                                                                                        |
-| --------------- | ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `text()`        | Promise\<string\>                               | Đọc nội dung dưới dạng văn bản (`String`).                                                                                   |
-| `arrayBuffer()` | Promise\<ArrayBuffer>                           | Đọc toàn bộ nội dung của `Blob` và trả về dưới dạng một `ArrayBuffer` – đây là định dạng nhị phân thấp cấp trong JavaScript. |
-| `stream()`      | ReadableStream\<Uint8Array\<ArrayBufferLike\>\> | Chuyển `Blob` thành `ReadableStream`.                                                                                        |
+| Phương thức     | Kiểu dữ liệu trả về                             | Mô tả                                                                                                                                                                                                                                                    |
+| --------------- | ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `text()`        | Promise\<string\>                               | Đọc nội dung dưới dạng văn bản (`String`).                                                                                                                                                                                                               |
+| `arrayBuffer()` | Promise\<ArrayBuffer>                           | 👉 Đọc toàn bộ nội dung của `Blob` và trả về dưới dạng một `ArrayBuffer` – đây là định dạng nhị phân thấp cấp trong JavaScript.<br />👉 **Thường dùng với**: `Uint8Array`, `DataView`, Web APIs thao tác với buffer (như WebGL, WebSocket, crypto, v.v.) |
+| `stream()`      | ReadableStream\<Uint8Array\<ArrayBufferLike\>\> | Chuyển `Blob` thành `ReadableStream`.                                                                                                                                                                                                                    |
 
 - Ví dụ về phương thức `text()` với `arrayBuffer()`
 
