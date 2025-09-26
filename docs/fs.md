@@ -1,7 +1,6 @@
 ---
 sidebar_position: 21
 ---
-
 # fs
 
 ## Giới thiệu về `fs`
@@ -12,10 +11,11 @@ sidebar_position: 21
 
 :::
 
-## Đọc file
+## `fs.readFileSync()`
 
 :::info
 
+- Phương thức `fs.readFileSync()` dùng để đọc file.
 - Cú pháp:
 
 ```js
@@ -81,10 +81,11 @@ const fileUtf8 = fs.readFileSync("files/example.txt", "utf8");
 
 :::
 
-## Ghi file
+## `fs.writeFileSync()`
 
 :::info
 
+- Phương thức `fs.writeFileSync()` dùng để ghi file.
 - Cú pháp:
 
 ```js
@@ -129,10 +130,11 @@ fs.writeFileSync("files/example-clone.jpg", imageFileBase64, "base64"); // Ghi l
 
 :::
 
-## Copy file
+## `fs.copyFileSync()`
 
 :::info
 
+- Phương thức `fs.copyFileSync()` dùng để copy 1 file.
 - Cú pháp:
 
 ```js
@@ -149,10 +151,11 @@ import fs from "fs";
 fs.copyFileSync("files/example.jpg", "files/example-clone.jpg"); // Copy file ảnh
 ```
 
-## Chèn nội dung vào file
+## `fs.appendFileSync()`
 
 :::info
 
+- Phương thức `fs.appendFileSync()` dùng để chèn nội dung vào file.
 - Cú pháp:
 
 ```js
@@ -171,17 +174,18 @@ import fs from "fs";
 fs.appendFileSync("files/example.txt", "Xin chào các bạn"); // Ghi thêm vào file text
 ```
 
-## Tạo thư mục
+## `fs.mkdirSync()`
 
 :::info
 
+- Phương thức `fs.mkdirSync()` dùng để tạo thư mục mới
 - Cú pháp:
 
 ```js
 fs.mkdirSync(path: string, { recursive?: boolean }): string | undefined;
 ```
 
-- Phương thức `fs.mkdirSync()` trong Node.js được sử dụng để tạo một thư mục mới. **`recursive`** (boolean): Nếu được đặt là `true`, tất cả các thư mục con trong đường dẫn sẽ được tạo nếu chúng chưa tồn tại.
+- **`recursive`** (boolean): Nếu được đặt là `true`, tất cả các thư mục con trong đường dẫn sẽ được tạo nếu chúng chưa tồn tại.
 
 :::
 
@@ -193,7 +197,7 @@ import fs from "fs";
 fs.mkdirSync("assets/images", { recursive: true });
 ```
 
-## Xóa file, thư mục
+## `fs.rmSync()`
 
 :::info
 
@@ -229,10 +233,11 @@ fs.rmSync("assets", { recursive: true }); // Xóa thư mục "assets" và tất 
 fs.rmSync("assets/images/example.jpg"); // Xóa file example.jpg
 ```
 
-## Đổi tên file, thư mục
+## `fs.renameSync()`
 
 :::info
 
+- Phương thức `fs.renameSync()` dùng để đổi tên file hoặc thư mục.
 - Cú pháp:
 
 ```js
@@ -250,10 +255,24 @@ fs.renameSync("assets/images", "assets/img"); // Đổi tên thư mục
 fs.renameSync("assets/example.pdf", "assets/my-cv.pdf"); // Đổi tên file
 ```
 
-## Đọc file, folder bên trong thư mục
+## `fs.existsSync()`
 
 :::info
 
+- Phương thức `fs.existsSync()` dùng để kiểm tra xem 1 file / folder có tồn tại hay không.
+- Cú pháp:
+
+```js
+fs.existsSync(path: string): boolean
+```
+
+:::
+
+## `fs.readdirSync()`
+
+:::info
+
+- Phương thức `fs.readdirSync()` dùng để đọc tất cả file/folder bên trong 1 thư mục
 - Cú pháp:
 
 ```js
@@ -261,7 +280,7 @@ fs.readdirSync(path: stringify, {recursive?: boolean, withFileTypes?: boolean}):
 ```
 
 - Trong đó:
-  - **`recursive`** (boolean): Nếu được đặt là `true`, sẽ đệ quy qua các thư mục con.
+  - **`recursive`** (boolean): Nếu được đặt là `true`, sẽ duyệt đệ quy qua tất cả các file/folder con bên trong nó.
   - **`withFileTypes`** (boolean): Nếu được đặt là `true`, mỗi phần tử trong mảng trả về sẽ là một đối tượng `fs.Dirent` thay vì một chuỗi tên tệp tin/thư mục. Điều này cho phép ta phân biệt giữa các tệp tin và thư mục dễ dàng hơn.
 
 :::
@@ -291,7 +310,102 @@ dirents.forEach((dirent) => {
 });
 ```
 
-## Đọc ghi file sử dụng stream trong fs
+- Ví dụ 3: Chỉ định `recursive: true`
+
+  - Giả sử cây thư mục của ta là:
+
+    ```plaintext
+    src
+    │   aes-gcm.ts
+    │   download-m3u8.ts
+    │   hmac-sha256.ts
+    │   main.ts
+    │
+    └───ffmpeg
+        │   ffmpeg.util.ts
+        │   index.ts
+        │
+        └───siuuuuu
+            └───ffmpeg-sub1
+                │   a1.ts
+                │   b1.ts
+                │
+                └───ffmpeg-sub2
+                        a2.ts
+                        b.ts
+                        b2.ts
+    ```
+  - Lúc này, ta sẽ so sánh sự khác biệt `recursive: false` với `recursive: true`
+
+    ```ts
+    import fs from "fs";
+    import path from "path";
+
+    const srcDirPath = path.resolve("src");
+
+    const dirents = fs.readdirSync(srcDirPath, {
+      withFileTypes: true,
+      recursive: false,
+    });
+
+    dirents.forEach((dirent) => {
+      const direntPath = path.resolve(dirent.parentPath, dirent.name);
+      if (dirent.isDirectory()) {
+        console.log(`📁 Folder: ${dirent.name} (${direntPath})`);
+      } else if (dirent.isFile()) {
+        console.log(`📝 File: ${dirent.name} (${direntPath})`);
+      }
+    });
+
+    /*
+    📝 File: aes-gcm.ts (D:\typescript-with-bun\src\aes-gcm.ts)
+    📝 File: download-m3u8.ts (D:\typescript-with-bun\src\download-m3u8.ts)
+    📁 Folder: ffmpeg (D:\typescript-with-bun\src\ffmpeg)
+    📝 File: hmac-sha256.ts (D:\typescript-with-bun\src\hmac-sha256.ts)
+    📝 File: main.ts (D:\typescript-with-bun\src\main.ts)
+    */
+    ```
+
+    ```ts
+    import fs from "fs";
+    import path from "path";
+
+    const srcDirPath = path.resolve("src");
+
+    const dirents = fs.readdirSync(srcDirPath, {
+      withFileTypes: true,
+      recursive: true,
+    });
+
+    dirents.forEach((dirent) => {
+      const direntPath = path.resolve(dirent.parentPath, dirent.name);
+      if (dirent.isDirectory()) {
+        console.log(`📁 Folder: ${dirent.name} (${direntPath})`);
+      } else if (dirent.isFile()) {
+        console.log(`📝 File: ${dirent.name} (${direntPath})`);
+      }
+    });
+
+    /*
+    📝 File: aes-gcm.ts (D:\typescript-with-bun\src\aes-gcm.ts)
+    📝 File: download-m3u8.ts (D:\typescript-with-bun\src\download-m3u8.ts)
+    📁 Folder: ffmpeg (D:\typescript-with-bun\src\ffmpeg)
+    📝 File: hmac-sha256.ts (D:\typescript-with-bun\src\hmac-sha256.ts)
+    📝 File: main.ts (D:\typescript-with-bun\src\main.ts)
+    📝 File: ffmpeg.util.ts (D:\typescript-with-bun\src\ffmpeg\ffmpeg.util.ts)
+    📝 File: index.ts (D:\typescript-with-bun\src\ffmpeg\index.ts)
+    📁 Folder: siuuuuu (D:\typescript-with-bun\src\ffmpeg\siuuuuu)
+    📁 Folder: ffmpeg-sub1 (D:\typescript-with-bun\src\ffmpeg\siuuuuu\ffmpeg-sub1)
+    📝 File: a1.ts (D:\typescript-with-bun\src\ffmpeg\siuuuuu\ffmpeg-sub1\a1.ts)
+    📝 File: b1.ts (D:\typescript-with-bun\src\ffmpeg\siuuuuu\ffmpeg-sub1\b1.ts)
+    📁 Folder: ffmpeg-sub2 (D:\typescript-with-bun\src\ffmpeg\siuuuuu\ffmpeg-sub1\ffmpeg-sub2)
+    📝 File: a2.ts (D:\typescript-with-bun\src\ffmpeg\siuuuuu\ffmpeg-sub1\ffmpeg-sub2\a2.ts)
+    📝 File: b.ts (D:\typescript-with-bun\src\ffmpeg\siuuuuu\ffmpeg-sub1\ffmpeg-sub2\b.ts)
+    📝 File: b2.ts (D:\typescript-with-bun\src\ffmpeg\siuuuuu\ffmpeg-sub1\ffmpeg-sub2\b2.ts)
+    */
+    ```
+
+## `fs.createReadStream()` / `fs.createWriteStream()`
 
 :::info
 
@@ -299,7 +413,7 @@ dirents.forEach((dirent) => {
 
 :::
 
-#### `fs.createWriteStream`
+### `fs.createWriteStream()`
 
 - Dùng để tạo một luồng ghi (`write stream`) vào file, giúp ghi dữ liệu theo từng phần mà không cần nạp toàn bộ nội dung vào bộ nhớ.
 
@@ -330,7 +444,7 @@ writeStream.end(() => {
 
 :::
 
-#### `fs.createReadStream`
+### `fs.createReadStream()`
 
 - Dùng để tạo một luồng đọc (`read stream`) từ file, giúp đọc file theo từng phần nhỏ mà không cần tải toàn bộ vào bộ nhớ.
 
