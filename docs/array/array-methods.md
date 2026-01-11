@@ -49,6 +49,12 @@ console.log(copyArray); // [5, 4, 3, 2, 1]
 
 ## `toReversed()`
 
+:::note[Chú ý]
+
+- Phương thức `.toReversed()` yêu cầu `target` từ `ES2023` trở đi.
+
+:::
+
 | Syntax             | Return type | Description                                                                                              |
 | ------------------ | ----------- | -------------------------------------------------------------------------------------------------------- |
 | `arr.toReversed()` | `T[]`       | ➡️ Trả về bản sao của một mảng với các phần tử bị đảo ngược.<br />⚠️ Mảng ban đầu **KHÔNG** bị thay đổi. |
@@ -82,6 +88,12 @@ console.log("sortedArr:", sortedArr); // [1, 2, 3, 4, 5, 6, 9, 58]
 ```
 
 ## `toSorted()`
+
+:::note[Chú ý]
+
+- Phương thức `.toSorted()` yêu cầu `target` từ `ES2023` trở đi.
+
+:::
 
 | Syntax                          | Return type | Description                                                                                                                         |
 | ------------------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------- |
@@ -162,6 +174,12 @@ console.log(fruits); // ["Banana", "Lemon", "Kiwi", "Mango"]
 ```
 
 ## `toSpliced()`
+
+:::note[Chú ý]
+
+- Phương thức `.toSpliced()` yêu cầu `target` từ `ES2023` trở đi.
+
+:::
 
 - Phương thức này cũng giống như `splice()` nhưng chỉ khác là nó trả về 1 mảng mới sau khi được biến đổi và mảng ban đầu **KHÔNG** bị thay đổi.
 - Ví dụ:
@@ -393,6 +411,12 @@ console.log(arr);
 
 ## `with()`
 
+:::note[Chú ý]
+
+- Phương thức `.with()` yêu cầu `target` từ `ES2023` trở đi.
+
+:::
+
 | Syntax                                   | Return type | Description                                                                                                                              |
 | ---------------------------------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | `arr.with(index: number, value: number)` | `T[]`       | ➡️ Trả về một mảng mới sau khi thay thế giá trị của phần tử có chỉ số `index` thành `value`.<br />⚠️ Mảng ban đầu **KHÔNG** bị thay đổi. |
@@ -405,6 +429,12 @@ console.log(arr.with(-3, 5555)); // [1, 2, 3, 4, 5, 6, 7, 5555, 9, 10]
 ```
 
 ## `flat()`
+
+:::note[Chú ý]
+
+- Phương thức `.flat()` yêu cầu `target` từ `ES2019` trở đi.
+
+:::
 
 | Syntax                     | Description                                                                                  |
 | -------------------------- | -------------------------------------------------------------------------------------------- |
@@ -419,6 +449,12 @@ console.log(arr.flat(Infinity)); // [1, 2, 3, 4]
 ```
 
 ## `flatMap()`
+
+:::note[Chú ý]
+
+- Phương thức `.flatMap()` yêu cầu `target` từ `ES2019` trở đi.
+
+:::
 
 | Syntax                                                              | Description                                                                                                                 |
 | ------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
@@ -463,4 +499,24 @@ const arr = [1, 2, 3];
 
 // Dùng flatMap: tự động làm phẳng 1 cấp
 console.log(arr.flatMap((x) => [x, x * 2])); // [1, 2, 2, 4, 3, 6]
+```
+
+## `at()`
+
+:::note[Chú ý]
+
+- Phương thức `.at()` yêu cầu `target` từ `ES2022` trở đi.
+
+:::
+
+| Syntax                     | Description                                                                                                                            |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `arr.at(position: number)` | 👉 Trả về giá trị của mảng ở vị trí `position`<br />👉 `position` có thể nhận giá trị âm. Nếu nhận giá trị âm, nó sẽ tính từ cuối mảng |
+
+```js
+const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+console.log(arr.at(2)); // 3
+console.log(arr.at(-1)); // 10
+console.log(arr.at(-4)); // 7
 ```
